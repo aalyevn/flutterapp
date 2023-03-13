@@ -11,8 +11,6 @@ build&deploy:
     - flutter packages get
   script:
     - flutter build apk --debug
-    - pwd
-    - ls -la 
     - firebase appdistribution:distribute "build/app/outputs/flutter-apk/app-debug.apk"  --app "$ANDROID_FIREBASE_ID" --token "$FIREBASE_TOKEN" --release-notes "Bug fixes and improvements" --groups "tester"
   artifacts:
     paths:
