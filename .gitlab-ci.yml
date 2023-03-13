@@ -1,0 +1,21 @@
+image: cirrusci/flutter:latest
+
+stages:
+  - build
+
+flutter_build:
+  stage: build
+  before_script:
+    - flutter channel stable
+    - flutter upgrade
+    - flutter pub get
+    - flutter clean
+  script:
+    - flutter analyze
+    - flutter build apk --debug
+  artifacts:
+    paths:
+      - build/app/outputs/apk/debug/app-debug.apk
+  only:
+    refs:
+      - develop
