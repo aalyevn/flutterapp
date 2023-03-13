@@ -6,8 +6,6 @@ stages:
 flutter_build:
   stage: build
   before_script:
-    - flutter channel stable
-    - flutter upgrade
     - flutter pub get
     - flutter clean
   script:
