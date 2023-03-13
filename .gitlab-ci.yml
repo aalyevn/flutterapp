@@ -6,6 +6,7 @@ stages:
 build&deploy:
   stage: build
   before_script:
+    - curl -sL https://firebase.tools | bash
     - flutter clean
     - flutter packages get
   script:
