@@ -3,13 +3,14 @@ image: cirrusci/flutter:latest
 stages:
   - build
 
-flutter_build:
+build&deploy:
   stage: build
   before_script:
     - flutter clean
     - flutter packages get
   script:
     - flutter build apk --debug
+    - firebase appdistribution:distribute "build/app/outputs/flutter-apk/app-debug.apk"  --app "$ANDROID_FIREBASE_ID" --token "$FIREBASE_TOKEN" --release-notes "Bug fixes and improvements" --groups "tester"
   artifacts:
     paths:
       - build/app/outputs/flutter-apk/app-debug.apk
